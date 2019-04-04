@@ -1,0 +1,6 @@
+CODE;NAME;CITY;COUNTRY;LATITUDE;LONGITUDE
+KUN;An airport;Kaunas;Lithuania;-6.081689834590001;145.391998291
+CPH;Copenhagen Kastrup Airport;Copenhagen;Denmark;55.617900848389;12.656000137329
+MAN;Manchester Airport;Manchester;United Kingdom;53.35369873046875;-2.2749500274658203
+LPL;Liverpool John Lennon Airport;Liverpool;United Kingdom;53.33359909057617;-2.849720001220703
+BLL;Billund Airport;Billund;Denmark;55.7402992249;9.15178012848

@@ -7,7 +7,7 @@ import cphb.models.Route;
 /**
  * RouteEdge
  */
-public class RouteEdge implements Edge<Airport>, Comparable {
+public class RouteEdge implements Edge<Airport>, Comparable<RouteEdge> {
 
     private Route route;
     private WeightAlgorithm weightAlgo;
@@ -52,8 +52,7 @@ public class RouteEdge implements Edge<Airport>, Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (!(o instanceof RouteEdge)) throw new IllegalArgumentException();
+    public int compareTo(RouteEdge o) {
         return Double.compare(getWeight(), ((RouteEdge)o).getWeight());
     }
 

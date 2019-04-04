@@ -16,7 +16,6 @@ import cphb.airport.WeightAlgorithm;
 import cphb.algo.BreathFirstSearch;
 import cphb.algo.DepthFirstSearch;
 import cphb.algo.Digraph;
-import cphb.algo.DijkstrasSearch;
 import cphb.algo.MinimumSpanningTree;
 import cphb.models.*;
 

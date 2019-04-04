@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import edu.princeton.cs.algs4.Bag;
 
@@ -17,6 +18,9 @@ public class Digraph<V, E extends Edge<V>> {
 
     public Digraph(int len) {
         data = new HashMap<>(len);
+    }
+    public Digraph() {
+        data = new HashMap<>();
     }
 
     public void addEdge(E edge) {
@@ -48,6 +52,10 @@ public class Digraph<V, E extends Edge<V>> {
             }
         }
         return edges;
+    }
+
+    public Set<V> vertices() {
+        return data.keySet();
     }
 
     private void addEdgeToVertex(V v, E e) {

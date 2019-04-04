@@ -17,6 +17,7 @@ import cphb.algo.BreathFirstSearch;
 import cphb.algo.DepthFirstSearch;
 import cphb.algo.Digraph;
 import cphb.algo.DijkstrasSearch;
+import cphb.algo.MinimumSpanningTree;
 import cphb.models.*;
 
 /**
@@ -56,17 +57,35 @@ public class App
         // }
         // System.out.println("");
 
-        Digraph<Airport, RouteEdge> airRouteMap = new Digraph<Airport, RouteEdge>(routes.size());
-        for (Route route : routes) {
-            airRouteMap.addEdge(new RouteEdge(route, WeightAlgorithm.TIME_BASED));
+        // Digraph<Airport, RouteEdge> airRouteMap = new Digraph<Airport, RouteEdge>(routes.size());
+        // for (Route route : routes) {
+        //     airRouteMap.addEdge(new RouteEdge(route, WeightAlgorithm.TIME_BASED));
+        // }
+        // DijkstrasSearch<Airport, RouteEdge> dSearch = new DijkstrasSearch<>(airRouteMap, src);
+        // System.out.println("Quickest path between " + src.getCode() + " and " + dest.getCode() + " is " + dSearch.distTo(dest));
+        // for (RouteEdge edge : dSearch.pathTo(dest)) {
+        //     System.out.print(edge.getSrc().getCode() + "->" + edge.getDest().getCode() + " ");
+        // }
+        // System.out.println("");
+
+        MinimumSpanningTree<Airport, RouteEdge> largestMst = null;
+        for (Airline airline : airlines) {
+            MinimumSpanningTree<Airport,RouteEdge> mst = getAirlineMST(airline, routes);
+            if (largestMst == null || mst.size() > largestMst.size()) {
+                largestMst = mst;
+            }
+            System.out.println(airline.getCode() + " mst size: " + mst.size());
         }
-        DijkstrasSearch<Airport, RouteEdge> dSearch = new DijkstrasSearch<>(airRouteMap, src);
-        System.out.println("Quickest path between " + src.getCode() + " and " + dest.getCode() + " is " + dSearch.distTo(dest));
-        for (RouteEdge edge : dSearch.pathTo(dest)) {
-            System.out.print(edge.getSrc().getCode() + "->" + edge.getDest().getCode() + " ");
-        }
-        System.out.println("");
+        System.out.println(largestMst.getPath().element().getRoute().getAirline().getCode() + " has the largest coverage(" + largestMst.size() + ")");
         
+    }
+
+    private static MinimumSpanningTree<Airport, RouteEdge> getAirlineMST(Airline airline, Collection<Route> routes) {
+        Digraph<Airport,RouteEdge> graph = new Digraph<>();
+        for (Route route : routes.stream().filter(r -> r.getAirline().getCode().equals(airline.getCode())).collect(Collectors.toList())) {
+            graph.addEdge(new RouteEdge(route));
+        }
+        return new MinimumSpanningTree<Airport,RouteEdge>(graph);
     }
 
     private static Iterable<Airline> getAirlinesTravellingBetween(Iterable<Airline> airlines, Collection<Route> routes, 

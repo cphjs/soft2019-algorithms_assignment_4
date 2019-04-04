@@ -5,7 +5,7 @@
 
 # Assignment
 
-Most relevant classes are contained within the [algo](src/main/java/cphb/algo) package, the others are just supporting classes to use the graphs in an airline context. The [main class](src/main/java/cphb/App) contains some example code on how to run this, most of it is commented out, but each block should answer one of the assignments questions.
+Most relevant classes are contained within the [algo](src/main/java/cphb/algo) package, the others are just supporting classes to use the graphs in an airline context. The [main class](src/main/java/cphb/App.java) contains some example code on how to run this, most of it is commented out, but each block should answer one of the assignments questions.
 
 ## The directed graph
 
